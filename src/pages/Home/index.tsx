@@ -8,6 +8,7 @@ import key from '../../key'
 import apod from '../../protocols/apod'
 import Loading from '../../components/Loading'
 
+import backupPhotos from '../../backup/index'
 
 export default function Home() {
   const [photos, setPhotos] = useState<apod[]>([])
@@ -31,7 +32,7 @@ export default function Home() {
         }
 
       } catch (error) {
-        //Tratar erros
+        setPhotos(backupPhotos)
       }
     }
 

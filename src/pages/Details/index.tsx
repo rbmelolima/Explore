@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { RouteComponentProps } from 'react-router-dom'
+import { RouteComponentProps, Link } from 'react-router-dom'
+import { FaArrowLeft } from 'react-icons/fa'
 import axios from 'axios'
+
 import key from '../../key'
 import apod from '../../protocols/apod'
 import Loading from '../../components/Loading'
@@ -47,13 +49,16 @@ export default function Details({ match }: RouteComponentProps<params>) {
     <main>
       <div className="content">
         <header>
+          <Link to="/">
+            <FaArrowLeft color="fff" size={24}/>
+          </Link>
           <h1>{data?.title}</h1>
           <p>{data?.explanation}</p>
         </header>
 
-        <div className="img-container" style={{ backgroundImage: `url(${data?.url})` }}></div>
+        <div className="img-container" style={{ backgroundImage: `url(${data?.hdurl})` }}></div>
         <div className="img-information">
-          <p>{`Author: ${data?.copyright !== null ? data?.copyright : 'Public domain'}`}</p>
+          <p>{`${data?.copyright !== undefined ? 'Author: ' + data?.copyright : 'Public domain'}`}</p>
           <p>{data?.date}</p>
         </div>
       </div>
