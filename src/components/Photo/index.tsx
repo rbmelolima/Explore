@@ -1,15 +1,15 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import './style.css'
 
-
-export default function Photo(props) {
+export default function Photo(props: any) { 
   const background = {
     backgroundImage: `url(${props.url})`
   }
 
   return (
-    <a href="/" className="photo-link" name={props.description}>
+    <Link to={`/details/${props.date}`} className="photo-link" target="blanck">
       <div className="photo-background" style={background}></div>
-    </a>
+    </Link>
   )
 }

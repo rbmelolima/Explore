@@ -1,10 +1,33 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 import './style.css'
 
 import Grid from '../../components/Grid'
 import Photo from '../../components/Photo'
+import key from '../../key'
+import apod from '../../protocols/apod'
+
 
 export default function Home() {
+  const [photos, setPhotos] = useState<apod[]>([])
+
+  useEffect(() => {
+    getPhotos()
+  }, [])
+
+  async function getPhotos() {
+    try {
+      const response = await axios.get<apod[]>(`https://api.nasa.gov/planetary/apod?api_key=${key}&count=75&hd=true`)  
+      if (response.status === 200) {
+        const filtered = response.data.filter(photo => photo.media_type === "image")
+        setPhotos(filtered)
+      }
+
+    } catch (error) {
+      //Tratar erros
+    }
+  }
+  
   return (
     <main>
       <div className="content">
@@ -15,32 +38,14 @@ export default function Home() {
         </header>
 
         <Grid>
-          <Photo
-            url={"https://images.unsplash.com/photo-1594323721261-d4905cea3791?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=80"}
-            description={"aaa"}
-          />
-          <Photo
-            url={"https://images.unsplash.com/photo-1594323721261-d4905cea3791?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=80"}
-            description={"aaa"}
-          />
-          <Photo
-            url={"https://images.unsplash.com/photo-1594323721261-d4905cea3791?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=80"}
-            description={"aaa"}
-          />
-          <Photo
-            url={"https://images.unsplash.com/photo-1594323721261-d4905cea3791?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=80"}
-            description={"aaa"}
-          />
-          <Photo
-            url={"https://images.unsplash.com/photo-1594323721261-d4905cea3791?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=80"}
-            description={"aaa"}
-          />
-          <Photo
-            url={"https://images.unsplash.com/photo-1594323721261-d4905cea3791?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=600&q=80"}
-            description={"aaa"}
-          />
+          {
+            photos.length > 0 ?
+              photos.map(item => (
+                <Photo date={item.date} url={item.url} key={item.date} />
+              ))
+              : <> </>
+          }
         </Grid>
-
       </div>
     </main>
   )
