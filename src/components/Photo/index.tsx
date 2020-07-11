@@ -8,7 +8,7 @@ export default function Photo(props: any) {
   }
 
   return (
-    <Link to={`/details/${props.date}`} className="photo-link" target="blanck">
+    <Link to={`/details/${props.date}`}>
       <div className="photo-background" style={background}></div>
     </Link>
   )

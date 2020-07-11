@@ -6,6 +6,7 @@ import Grid from '../../components/Grid'
 import Photo from '../../components/Photo'
 import key from '../../key'
 import apod from '../../protocols/apod'
+import Loading from '../../components/Loading'
 
 
 export default function Home() {
@@ -16,25 +17,47 @@ export default function Home() {
   }, [])
 
   async function getPhotos() {
-    try {
-      const response = await axios.get<apod[]>(`https://api.nasa.gov/planetary/apod?api_key=${key}&count=75&hd=true`)  
-      if (response.status === 200) {
-        const filtered = response.data.filter(photo => photo.media_type === "image")
-        setPhotos(filtered)
-      }
+    const photosSession = sessionStorage.getItem('photos')
 
-    } catch (error) {
-      //Tratar erros
+    if (photosSession === null) {
+      try {
+        const response = await axios.get<apod[]>(`https://api.nasa.gov/planetary/apod?api_key=${key}&count=100&hd=true`)
+        if (response.status === 200) {
+          const filtered = response.data.filter(photo => photo.media_type === "image")
+          const jsonPhotos = JSON.stringify(filtered)
+
+          setPhotos(filtered)
+          sessionStorage.setItem('photos', jsonPhotos)
+        }
+
+      } catch (error) {
+        //Tratar erros
+      }
+    }
+
+    else {
+      const parse = JSON.parse(photosSession)
+      setPhotos(parse)
     }
   }
-  
+
+  async function getMorePhotos() {
+    const clean = () => sessionStorage.clear()
+    clean()
+    getPhotos()
+  }
+
+  if (photos.length === 0) {
+    return <Loading />
+  }
+
   return (
     <main>
       <div className="content">
         <header>
           <h1>Explore</h1>
           <p>Discover the cosmos! Each day a different image or photograph of our fascinating universe is featured, along with a brief explanation written by a professional astronomer.</p>
-          <button>More photos!</button>
+          <button onClick={() => getMorePhotos()}>More photos!</button>
         </header>
 
         <Grid>

@@ -3,6 +3,7 @@ import { RouteComponentProps } from 'react-router-dom'
 import axios from 'axios'
 import key from '../../key'
 import apod from '../../protocols/apod'
+import Loading from '../../components/Loading'
 
 interface params {
   date: string
@@ -28,7 +29,7 @@ export default function Details({ match }: RouteComponentProps<params>) {
   }
 
   if (data === null) {
-    return <h1>Aguarde</h1>
+    return <Loading />
   }
 
   return (
