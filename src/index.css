@@ -1,13 +1,66 @@
-body {
+* {
+  padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  vertical-align: baseline;
+  list-style: none;
+  border: 0;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Poppins", sans-serif;
+}
+
+h1 {
+  font-size: 48px;
+}
+
+p,
+span,
+button {
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+}
+
+main {
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #151515 0%, #000000 0.01%, #3f3f3f 100%);
+  color: #fff;
+  padding: 5%;
+  display: flex;
+  justify-content: center;
+}
+
+main .content {
+  width: 100%;
+}
+
+button {
+  background-color: #fff;
+  color: #000;
+  font-weight: 700;
+  padding: 16px 40px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+  transition: ease-in-out 0.3s all;
+}
+
+button:hover {
+  -webkit-box-shadow: 5px 5px 16px 0px rgba(255, 255, 255, 0.3);
+  -moz-box-shadow: 5px 5px 16px 0px rgba(255, 255, 255, 0.3);
+  box-shadow: 5px 5px 16px 0px rgba(255, 255, 255, 0.3);
+}
+
+/****************** Media Queries ******************/
+
+@media screen and (max-width: 480px) {
+  main {
+    padding: 32px 16px;
+  }
 }

@@ -1,0 +1,20 @@
+.photo-background {
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px;
+}
+
+@media (min-width: 1px) {
+  /* smartphones, Android phones, landscape iPhone */
+  .photo-background {
+    min-height: 250px;
+  }
+}
+
+@media (min-width: 1281px) {
+  /* hi-res laptops and desktops */
+  .photo-background {
+    min-height: 300px;
+  }
+}
