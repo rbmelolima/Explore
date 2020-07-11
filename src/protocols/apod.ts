@@ -6,6 +6,7 @@ interface apod {
   service_version: string
   title: string
   url: string
+  copyright: string
 }
 
 export default apod

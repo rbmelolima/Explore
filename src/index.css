@@ -18,6 +18,7 @@ h6 {
 
 h1 {
   font-size: 48px;
+  margin-bottom: 16px;
 }
 
 p,
@@ -32,7 +33,7 @@ main {
   min-height: 100vh;
   background: linear-gradient(180deg, #151515 0%, #000000 0.01%, #3f3f3f 100%);
   color: #fff;
-  padding: 5%;
+  padding: 5% 5% 64px 5%;
   display: flex;
   justify-content: center;
 }
@@ -62,5 +63,9 @@ button:hover {
 @media screen and (max-width: 480px) {
   main {
     padding: 32px 16px;
+  }  
+
+  h1 {
+    font-size: 40px;
   }
 }

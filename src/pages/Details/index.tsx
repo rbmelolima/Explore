@@ -5,6 +5,8 @@ import key from '../../key'
 import apod from '../../protocols/apod'
 import Loading from '../../components/Loading'
 
+import './style.css'
+
 interface params {
   date: string
 }
@@ -15,16 +17,25 @@ export default function Details({ match }: RouteComponentProps<params>) {
   useEffect(() => {
     const date = match.params.date
     getDetails(date)
-
   }, [match.params.date])
 
   async function getDetails(date: string) {
-    try {
-      const response = await axios.get<apod>(`https://api.nasa.gov/planetary/apod?api_key=${key}&date=${date}`)
-      setData(response.data)
-    }
-    catch (error) {
+    const photos = sessionStorage.getItem('photos')
 
+    if (photos !== null) {
+      const arrayPhotos: apod[] = JSON.parse(photos)
+      const detail = arrayPhotos.filter(item => item.date === date)
+      setData(detail[0])
+    }
+
+    else {
+      try {
+        const response = await axios.get<apod>(`https://api.nasa.gov/planetary/apod?api_key=${key}&date=${date}`)
+        setData(response.data)
+      }
+      catch (error) {
+
+      }
     }
   }
 
@@ -36,11 +47,15 @@ export default function Details({ match }: RouteComponentProps<params>) {
     <main>
       <div className="content">
         <header>
-          <h1>Details</h1>
+          <h1>{data?.title}</h1>
           <p>{data?.explanation}</p>
         </header>
 
-        <img src={data?.url} alt={data?.title} />
+        <div className="img-container" style={{ backgroundImage: `url(${data?.url})` }}></div>
+        <div className="img-information">
+          <p>{`Author: ${data?.copyright !== null ? data?.copyright : 'Public domain'}`}</p>
+          <p>{data?.date}</p>
+        </div>
       </div>
     </main>
   )

@@ -1,0 +1,27 @@
+.notFound{
+  background-image: url("../../assets/lost.jpg");
+  background-size: cover;
+  background-position: center; 
+  
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+
+  position: relative;
+}
+
+.overlay{
+  z-index: 50;
+  width: 100%;
+  min-height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.notFound h1{
+  font-size: 120px;
+  z-index: 100;
+}
