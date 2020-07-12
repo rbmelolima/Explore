@@ -8,11 +8,11 @@ import PageNotFound from '../pages/PageNotFound'
 
 export default function Routes() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/details/:date" component={Details} />
-        <Route path="*" component={PageNotFound}/>
+        <Route path="*" component={PageNotFound} />
       </Switch>
     </BrowserRouter>
   )
