@@ -24,25 +24,37 @@ export default function Details({ match }: RouteComponentProps<params>) {
   async function getDetails(date: string) {
     const photos = sessionStorage.getItem('photos')
 
-    if (photos !== null) {
+    if (photos !== undefined && photos !== null) {
       const arrayPhotos: apod[] = JSON.parse(photos)
       const detail = arrayPhotos.filter(item => item.date === date)
-      setData(detail[0])
+
+      if (detail.length <= 0) {
+        try {
+          const response = await axios.get<apod>(`https://api.nasa.gov/planetary/apod?api_key=${key}&date=${date}`)
+          setData(response.data)
+        } catch (error) {
+
+        }
+      }
+      else {
+        setData(detail[0])
+      }
     }
 
     else {
       try {
         const response = await axios.get<apod>(`https://api.nasa.gov/planetary/apod?api_key=${key}&date=${date}`)
         setData(response.data)
-      }
-      catch (error) {
+      } catch (error) {
 
       }
     }
   }
 
   if (data === null) {
+    console.log("Data is null " + data)
     return <Loading />
+
   }
 
   return (
@@ -50,7 +62,7 @@ export default function Details({ match }: RouteComponentProps<params>) {
       <div className="content">
         <header>
           <Link to="/">
-            <FaArrowLeft color="fff" size={24}/>
+            <FaArrowLeft color="fff" size={24} />
           </Link>
           <h1>{data?.title}</h1>
           <p>{data?.explanation}</p>

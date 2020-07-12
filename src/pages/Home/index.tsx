@@ -22,11 +22,10 @@ export default function Home() {
 
     if (photosSession === null) {
       try {
-        const response = await axios.get<apod[]>(`https://api.nasa.gov/planetary/apod?api_key=${key}&count=100&hd=true`)
+        const response = await axios.get<apod[]>(`https://api.nasa.gov/planetary/apod?api_key=${key}&count=35&hd=true`)
         if (response.status === 200) {
           const filtered = response.data.filter(photo => photo.media_type === "image")
           const jsonPhotos = JSON.stringify(filtered)
-
           setPhotos(filtered)
           sessionStorage.setItem('photos', jsonPhotos)
         }
@@ -65,7 +64,7 @@ export default function Home() {
           {
             photos.length > 0 ?
               photos.map(item => (
-                <Photo date={item.date} url={item.url} key={item.date} />
+                <Photo date={item.date} url={item.url} title={item.title} key={item.date} />
               ))
               : <> </>
           }
