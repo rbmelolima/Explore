@@ -57,7 +57,7 @@ export default function Home() {
         <header>
           <h1>Explore</h1>
           <p>Discover the cosmos! Each day a different image or photograph of our fascinating universe is featured, along with a brief explanation written by a professional astronomer.</p>
-          <button onClick={() => getMorePhotos()}>More photos!</button>
+          <button className="btn-primary" onClick={() => getMorePhotos()}>More photos!</button>
         </header>
 
         <Grid>

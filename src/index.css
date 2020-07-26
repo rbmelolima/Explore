@@ -23,7 +23,8 @@ h1 {
 
 p,
 span,
-button {
+button,
+a {
   font-family: "Open Sans", sans-serif;
   font-size: 16px;
 }
@@ -42,7 +43,7 @@ main .content {
   width: 100%;
 }
 
-button {
+.btn-primary {
   background-color: #fff;
   color: #000;
   font-weight: 700;
@@ -50,12 +51,18 @@ button {
   margin-top: 16px;
   margin-bottom: 16px;
   transition: ease-in-out 0.3s all;
+  outline: none;
+  text-decoration: none;
 }
 
-button:hover {
+.btn-primary:hover {
   -webkit-box-shadow: 5px 5px 16px 0px rgba(255, 255, 255, 0.3);
   -moz-box-shadow: 5px 5px 16px 0px rgba(255, 255, 255, 0.3);
   box-shadow: 5px 5px 16px 0px rgba(255, 255, 255, 0.3);
+}
+
+.btn-primary:active {
+  background-color: #b4b4b4;
 }
 
 /****************** Media Queries ******************/
@@ -63,7 +70,7 @@ button:hover {
 @media screen and (max-width: 480px) {
   main {
     padding: 32px 16px;
-  }  
+  }
 
   h1 {
     font-size: 40px;
