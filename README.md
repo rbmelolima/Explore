@@ -1,4 +1,4 @@
-# Explore
+# :bookmark_tabs: Sobre
 > Discover the cosmos! Each day a different image or photograph of our fascinating universe is featured, along with a brief explanation written by a professional astronomer. 
 
 ![Página inicial do site](./index.png)
@@ -7,17 +7,22 @@ Inspirado no aplicativo [Orbit](https://github.com/rbmelolima/Orbit "Orbit"), cr
 
 [Acesse o Explore em seu navegador](https://www.rbmelolima.com.br/Explore/)
 
-## Iniciando o projeto
+## :hammer: Instalando
 
-1. Clone este projeto
+````bash
+# Clone este projeto
+$ git clone https://github.com/rbmelolima/Explore
 
-2. **Obtenha sua chave de acesso** à API e subtitua a existente na pasta `/src/key/index.js` 
+# Instale as dependências
+$ yarn 
 
-3. Instale todas as dependências
+# Obtenha sua chave de acesso à API e subtitua a existente na pasta /src/key/index.js
 
-4. Inicie com NPM ou Yarn
+# Inicie a aplicação
+$ yarn start
+````
 
-## APOD
+## :rocket: APOD
 
 > One of the most popular websites at NASA is the Astronomy Picture of the Day. In fact, this website is one of the most popular websites across all federal agencies. It has the popular appeal of a Justin Bieber video. This endpoint structures the APOD imagery and associated metadata so that it can be repurposed for other applications. In addition, if the concept_tags parameter is set to True, then keywords derived from the image explanation are returned. These keywords could be used as auto-generated hashtags for twitter or instagram feeds; but generally help with discoverability of relevant imagery.
 
