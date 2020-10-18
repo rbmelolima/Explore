@@ -1,7 +1,7 @@
-# :bookmark_tabs: Sobre
-> Discover the cosmos! Each day a different image or photograph of our fascinating universe is featured, along with a brief explanation written by a professional astronomer. 
-
 ![Página inicial do site](./index.png)
+
+## :bookmark_tabs: Sobre
+> Discover the cosmos! Each day a different image or photograph of our fascinating universe is featured, along with a brief explanation written by a professional astronomer. 
 
 Inspirado no aplicativo [Orbit](https://github.com/rbmelolima/Orbit "Orbit"), criei o Explore, um site que reune diversas fotos disponibilizadas pela NASA pela API da APOD.
 
